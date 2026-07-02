@@ -59,8 +59,8 @@ Dataset_link:https://www.kaggle.com/datasets/paramaggarwal/fashion-product-image
 
 
 Future Imporvements:
-1.Use annoy alogrithm for larger number of data instead of brute
-2.Deploy this project using docker and AWS
-3.Add performance Analyzer 
+-1.Use annoy alogrithm for larger number of data instead of brute
+-2.Deploy this project using docker and AWS
+-3.Add performance Analyzer 
 
 
