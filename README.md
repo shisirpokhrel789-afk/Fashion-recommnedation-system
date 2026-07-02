@@ -56,3 +56,11 @@ git push -u origin main
 
 Dataset_link:https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-dataset
 
+
+
+Future Imporvements:
+1.Use annoy alogrithm for larger number of data instead of brute
+2.Deploy this project using docker and AWS
+3.Add performance Analyzer 
+
+
