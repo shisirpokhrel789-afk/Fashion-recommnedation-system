@@ -63,4 +63,10 @@ Dataset_link:https://www.kaggle.com/datasets/paramaggarwal/fashion-product-image
 - 2.Deploy this project using docker and AWS
 - 3.Add performance Analyzer 
 
-
+##N Note: 
+- main.py - creates the model features.pkl and images.pkl
+- test.py- just test if the model is peforming well or not like loading the image and recommending similar imgaes 
+- app.py- This is the file that you must run in your terminal . It contains fastapi framework which connects all css and html files using jinja2templates
+- In your terminal run: python -m uvicorn app(# this app is python file app.py):app( # this app is instance of fastapi app= FastAPI()) --reload or uvicorn app:app --reload
+  
+  
