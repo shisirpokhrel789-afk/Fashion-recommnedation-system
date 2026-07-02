@@ -54,3 +54,5 @@ git remote add origin https://github.com/shisirpokhrel789-afk/fashion-recommenda
 git push -u origin main
 ```
 
+Dataset_link:https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-dataset
+
