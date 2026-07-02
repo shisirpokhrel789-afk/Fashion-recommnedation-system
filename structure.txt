@@ -1,0 +1,21 @@
+fashion-recommender-system/
+│
+├── app.py                  # FastAPI/Flask entry point
+├── main.py                 # Feature extraction/index creation (optional)
+├── requirements.txt
+├── README.md
+├── 
+
+├── static/
+│      main.css
+
+├── templates/
+│      index.html
+│
+├── uploads/                # User uploaded images
+│
+├── images/                 # Dataset images (optional)
+│
+
+│  features.pkl
+│  images.pkl          #using jolib these model are created 
