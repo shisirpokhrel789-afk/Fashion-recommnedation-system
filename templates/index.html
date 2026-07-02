@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Recommender system </title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="hero-copy">
+                <h1>Discover similar Outfits</h1>
+                <p>Upload any outfit image and discover 5 style recommendation.</p>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <span>Upload a picture</span>
+                    <form id="upload-form" method="post" enctype="multipart/form-data">
+                        <label class="file-input-label">
+                            <input type="file" name="file" id="image-file" accept="image/*" required>
+                            Choose an image
+                        </label>
+                        <button type="submit" class="primary-button">Get Recommendations</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="preview-panel hidden" id="preview-panel">
+                <div class="preview-card">
+                    <h2>Uploaded Image</h2>
+                    <div class="preview-frame">
+                        <img id="uploaded-preview" src="" alt="Uploaded image preview">
+                    </div>
+                </div>
+                <div class="recommendations-card">
+                    <div class="recommendations-header">
+                        <h2>Top 5 Recommendations</h2>
+                        <span id="status-label">Waiting for upload...</span>
+                    </div>
+                    <div class="recommendations-grid" id="recommendations-grid"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+    const form = document.getElementById('upload-form');
+    const fileInput = document.getElementById('image-file');
+    const previewPanel = document.getElementById('preview-panel');
+    const previewImage = document.getElementById('uploaded-preview');
+    const statusLabel = document.getElementById('status-label');
+    const recommendationsGrid = document.getElementById('recommendations-grid');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const uploadData = new FormData();
+        uploadData.append('file', file);
+
+        previewPanel.classList.remove('hidden');
+        previewImage.src = URL.createObjectURL(file);
+        statusLabel.textContent = 'Uploading image...';
+        recommendationsGrid.innerHTML = '';
+
+        const response = await fetch('/upload', {
+            method: 'POST',
+            body: uploadData,
+        });
+
+        if (!response.ok) {
+            statusLabel.textContent = 'Upload failed. Try another image.';
+            return;
+        }
+
+        const data = await response.json();
+        statusLabel.textContent = 'Fetching recommendations...';
+        renderRecommendations(data.recommendations, data.uploaded);
+    });
+
+    function renderRecommendations(recommendations, uploadedUrl) {
+        recommendationsGrid.innerHTML = '';
+        statusLabel.textContent = 'Here are your 5 recommendations:';
+        recommendations.forEach((src) => {
+            const item = document.createElement('div');
+            item.className = 'recommendation-item';
+            item.innerHTML = `
+                <div class="recommendation-image">
+                    <img src="${src}" alt="Recommendation">
+                </div>
+            `;
+            recommendationsGrid.appendChild(item);
+        });
+    }
+    </script>
+</body>
+</html>
