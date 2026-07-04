@@ -18,14 +18,14 @@ import joblib
 
 import numpy as np
 import os
-import cv2
+
 import tensorflow
 from tensorflow.keras.layers import GlobalMaxPooling2D
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
 
 
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 
 
 
